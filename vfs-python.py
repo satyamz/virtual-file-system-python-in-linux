@@ -5,12 +5,12 @@ import shutil
 
 device=raw_input("Enter device name: ")
 directory=raw_input("Enter directory name: ")
-size=raw_input("Enter size of file system(in mb): ")
+size=raw_input("Enter size of file system(in mb): ")	#Size of file system required.
 size=int(size)*2048
 print "Creating file"
 os.system("dd if=/dev/zero of="+device+" count="+str(size))
 print "Creating ext3 file system"
-os.system("mkfs -t ext3 -q "+device)	#To make ext3 file system
+os.system("mkfs -t ext3 -q "+device)	#To make ext3 file system.
 print "Creating directory"
 os.system("mkdir "+directory)
 print "Mounting file system"
