@@ -5,19 +5,19 @@ import shutil
 
 device=raw_input("Enter device name: ")
 directory=raw_input("Enter directory name: ")
-size=raw_input("Enter size of file system(in mb): ")	#Size of file system required.
+size=raw_input("Enter size of file system(in mb): ")			#Size of file system required.
 size=int(size)*2048
 print "Creating file"
 os.system("dd if=/dev/zero of="+device+" count="+str(size))
 print "Creating ext3 file system"
-os.system("mkfs -t ext3 -q "+device)	#To make ext3 file system.
+os.system("mkfs -t ext3 -q "+device)					#To make ext3 file system.
 print "Creating directory"
 os.system("mkdir "+directory)
 print "Mounting file system"
-os.system("sudo mount -o loop=/dev/loop0 "+device+" "+directory)
+os.system("sudo mount -o loop=/dev/loop0 "+device+" "+directory)	#Mounting loop device
 os.chdir(directory)
-u=0
-while u!=13:
+var = 0
+while var!=13:
 	print("\n1. Create directory")
 	print("2. Print current working directory")
 	print("3. Change directory")
@@ -31,19 +31,19 @@ while u!=13:
 	print("11. Display status of file or file system")
 	print("12. Delete file")
 	print("13. Unmount virtual file system and exit")
-	u=raw_input("Enter option: ")
+	var =	raw_input("Enter option: ")
 	
-	if(u=='1'):
+	if(var =='1'):
 		s=raw_input("Enter directory name: ")
 		if not os.path.exists(s):
 			os.mkdir(s)
 		else:
 			print("Directory "+s+" already exists")
 
-	elif(u=='2'):
+	elif(var =='2'):
 		print("Current working directory: "+os.getcwd())
 
-	elif(u=='3'):
+	elif(var =='3'):
 		s=raw_input("Enter path: ")
 		if os.path.exists(s):
 			os.chdir(s)
@@ -51,26 +51,26 @@ while u!=13:
 			print("Path invalid")
 
 
-	elif(u=='4'):
+	elif( var =='4'):
 		s=raw_input("Enter path: ")
 		if os.path.exists(s):
 			os.rmdir(s)
 		else:
 			print("Path invalid")
 
-	elif(u=='5'):
+	elif(var =='5'):
 		s=raw_input("Enter path: ")
 		if os.path.exists(s):
 			os.removedirs(s)
 		else:
 			print("Path invalid")
 
-	elif(u=='6'):
+	elif(var =='6'):
 		s=os.listdir(os.getcwd())
 		for filename in s:
 			print(filename)
 
-	elif(u=='7'):
+	elif( var =='7'):
 		s=raw_input("Enter file name: ")
 		print("Enter data in file: ")
 		w=sys.stdin.read()
@@ -78,7 +78,7 @@ while u!=13:
 		ptr.write(w)
 		ptr.close()
 
-	elif(u=='8'):
+	elif(var =='8'):
 		src=raw_input("Enter source name: ")
 		dst=raw_input("Enter new name: ")
 		if os.path.isfile(src):
@@ -86,7 +86,7 @@ while u!=13:
 		else:
 			print("File not found")
 
-	elif(u=='9'):
+	elif(var =='9'):
 		src=raw_input("Enter source path: ")
 		dst=raw_input("Enter destination path: ")
 		if os.path.isfile(src):
@@ -94,7 +94,7 @@ while u!=13:
 		else:
 			print("File not found")
 
-	elif(u=='10'):
+	elif(var =='10'):
 		s=raw_input("Enter file name: ")
 		if os.path.isfile(s):
 			ptr=open(s,"r+")
@@ -102,7 +102,7 @@ while u!=13:
 		else:
 			print("File not found")
 
-	elif(u=='11'):
+	elif( var=='11'):
 		s=raw_input("Enter path: ")
 		if os.path.isfile(s) or os.path.exists(s):
 			info=os.lstat(s)
@@ -119,57 +119,16 @@ while u!=13:
 		else:
 			print("Path invalid")
 
-	elif(u=='12'):
+	elif(var =='12'):
 		s=raw_input("Enter file name: ")
 		if os.path.isfile(s):
 			os.remove(s)
 		else:
 			print("File not found")
 
-	elif(u=='13'):
+	elif(var=='13'):
 		os.chdir("/home/satyam/")
 		os.system("sudo umount "+directory)
 	else:
 		print("Wrong option!")
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
