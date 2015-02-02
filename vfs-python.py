@@ -105,7 +105,7 @@ while var!=13:
 	elif( var=='11'):
 		s=raw_input("Enter path: ")
 		if os.path.isfile(s) or os.path.exists(s):
-			info=os.lstat(s)
+			info=os.lstat(s)					#Using inode information 
 			print("Protection bits: "+str(info.st_mode))
 			print("Inode number: "+str(info.st_ino))
 			print("Device: "+str(info.st_dev))
@@ -127,7 +127,7 @@ while var!=13:
 			print("File not found")
 
 	elif(var=='13'):
-		os.chdir("/home/satyam/")
+		os.chdir("/home/satyam/")				# Here give the name of your home directory 
 		os.system("sudo umount "+directory)
 	else:
 		print("Wrong option!")
